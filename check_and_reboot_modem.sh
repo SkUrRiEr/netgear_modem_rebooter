@@ -2,10 +2,11 @@
 
 STAMP=/tmp/wait_for_modem.stamp
 TMPSTAMP=/tmp/tmp.stamp
+WAITTIME=10
 
 if ping -q -c 1 10.1.1.1 > /dev/null && ! ping -q -c 1 8.8.8.8 > /dev/null; then
 	if [ -f $STAMP ]; then
-		touch $TMPSTAMP -d "-10 minutes"
+		touch $TMPSTAMP -d "-$WAITTIME minutes"
 
 		if [ $TMPSTAMP -ot $STAMP ]; then
 			echo "Assuming modem is still booting. Waiting..."
