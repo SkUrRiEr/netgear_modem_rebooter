@@ -1,0 +1,12 @@
+#! /usr/bin/expect -f
+
+spawn telnet 10.1.1.1
+expect "Login name:"
+send "admin\r"
+expect "Password:"
+send "password\r"
+expect ">"
+send "reboot\r"
+expect ">"
+send ""
+expect eof
