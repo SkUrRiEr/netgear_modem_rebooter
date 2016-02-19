@@ -3,7 +3,12 @@
 set ip [lindex $argv 0];
 
 spawn telnet $ip
-expect "Login name:"
+set timeout 10
+expect {
+	timeout {puts "Modem took too long to respond. Please check configurationa and reboot manually." exit}
+	"Unable to connect" {puts "Telnet connection refused. Please reboot manually."; exit}
+	"Login name:"
+}
 send "admin\r"
 expect "Password:"
 send "password\r"
