@@ -2,6 +2,9 @@
 
 #configuration
 MODEM_IP=192.168.100.254
+MAC="74:44:01:35:65:1C"
+ENABLE_USERNAME=Gearguy
+ENABLE_PASSWORD=Geardog
 
 STAMP=/tmp/wait_for_modem.stamp
 TMPSTAMP=/tmp/tmp.stamp
@@ -22,7 +25,13 @@ if ping -q -c $PACKETCOUNT $MODEM_IP > /dev/null && ! ping -q -c $PACKETCOUNT ww
 		echo "Cannot connect remotely, but modem is up. => rebooting."
 		echo
 
-		$(dirname $0)/reboot_modem.expect $MODEM_IP
+		PWD="$(dirname $0)"
+
+		python $PWD/netgear-telnetenable/telnetenable.py $MODEM_IP $(echo $MAC | tr -d ':' | tr 'a-z' 'A-Z') $ENABLE_USERNAME $ENABLE_PASSWORD
+		echo " => Waiting for telnet to become enabled..."
+		sleep 10
+		echo " => Rebooting modem..."
+		$PWD/reboot_modem.expect $MODEM_IP
 
 		touch $STAMP
 	fi

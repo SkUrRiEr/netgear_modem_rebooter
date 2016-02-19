@@ -12,14 +12,23 @@ This successfully deals with almost all connection issues and generally "fixes" 
 * standard TCP ping
 * expect
 * telnet
+* netgear-telnetunlock
 
 Running
 `apt-get install iputils-ping expect telnet`
 on debian should ensure that everything required is installed.
 
+`netgear-telnetunlock` is provided in a submodule. Running
+`git submodule init`
+then
+`git submodule update`
+will install this dependency.
+
+Note that different modems have different requirements and the script referenced in the submodule only works for "older" modems. See https://wiki.openwrt.org/toh/netgear/telnet.console for more details. Note that you might need to install a different unlocker and potentially compile it and modify the script to make this work.
+
 ## Modem / Router Requirements
 
-The router _MUST_ have the telnet port open and provide a command prompt on it and the server this runs on _MUST_ be able to connect to this. (I.e. "inside" your home network)
+The router _MUST_ have the telnet port open and be of the type that provides a root command prompt without a password after being unlocked and the server this runs on _MUST_ be able to connect to this. (I.e. "inside" your home network)
 
 ## How it works
 
