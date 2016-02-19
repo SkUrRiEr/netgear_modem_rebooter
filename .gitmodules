@@ -1,0 +1,3 @@
+[submodule "netgear-telnetenable"]
+	path = netgear-telnetenable
+	url = https://github.com/semyazza/netgear-telenetenable.git
