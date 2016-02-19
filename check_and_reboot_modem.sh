@@ -1,11 +1,14 @@
 #! /bin/sh
 
+#configuration
+MODEM_IP=192.168.100.254
+
 STAMP=/tmp/wait_for_modem.stamp
 TMPSTAMP=/tmp/tmp.stamp
 WAITTIME=10
 PACKETCOUNT=4
 
-if ping -q -c $PACKETCOUNT 10.1.1.1 > /dev/null && ! ping -q -c $PACKETCOUNT www.google.com > /dev/null; then
+if ping -q -c $PACKETCOUNT $MODEM_IP > /dev/null && ! ping -q -c $PACKETCOUNT www.google.com > /dev/null; then
 	if [ -f $STAMP ]; then
 		touch $TMPSTAMP -d "-$WAITTIME minutes"
 
@@ -19,7 +22,7 @@ if ping -q -c $PACKETCOUNT 10.1.1.1 > /dev/null && ! ping -q -c $PACKETCOUNT www
 		echo "Cannot connect remotely, but modem is up. => rebooting."
 		echo
 
-		$(dirname $0)/reboot_modem.expect
+		$(dirname $0)/reboot_modem.expect $MODEM_IP
 
 		touch $STAMP
 	fi

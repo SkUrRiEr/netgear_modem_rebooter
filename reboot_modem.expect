@@ -1,6 +1,8 @@
 #! /usr/bin/expect -f
 
-spawn telnet 10.1.1.1
+set ip [lindex $argv 0];
+
+spawn telnet $ip
 expect "Login name:"
 send "admin\r"
 expect "Password:"

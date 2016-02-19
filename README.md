@@ -29,9 +29,9 @@ The expect script spawns telnet, connects to the modem, logs in with the default
 
 ## Configuration
 
-Both scripts have the modem's IP (`10.1.1.1`) hard coded, and the server we ping, `www.google.com` is also hard coded.
+The IP address for the modem is set at the top of the shell script and the server we ping, `www.google.com` is hard coded.
 
-The shell script has a few configuration variables at the top (wait time after rebooting, number of attempts ping should try, temporary files, etc.)
+The shell script also has a few configuration variables at the top (wait time after rebooting, number of attempts ping should try, temporary files, etc.)
 
 ## Known Bugs
 
