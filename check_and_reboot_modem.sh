@@ -12,6 +12,7 @@ WAITTIME=10
 PACKETCOUNT=4
 
 if ping -q -c $PACKETCOUNT $MODEM_IP > /dev/null && ! ping -q -c $PACKETCOUNT www.google.com > /dev/null; then
+	date -R
 	if [ -f $STAMP ]; then
 		touch $TMPSTAMP -d "-$WAITTIME minutes"
 
